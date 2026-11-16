@@ -1,104 +1,14 @@
-# GS
+# RA5 · Projecte Fase 3 · SpawnCamp 
+- **Número o texto:** `id` ("RET-001") es texto porque es un identificador y no se calcula con él; `fecha` es texto porque JSON no tiene tipo fecha; `precio`, `valoracion` y `stock` son números porque se operan con ellos (IVA con dos decimales, comprobar si el stock es menor que 5).
+- **Decisiones de la Parte A:** los saltos de línea del CDATA de `descripcion_tienda` quitados.`fecha_actualizacion` va dentro de `tienda` porque se elimina el nivel `Catalogo`; RET-003 y RET-006 no tienen clave `descripcion` porque en el XML ese elemento opcional (`Descripcion?` en el DTD) no existe, no está vacío.
 
-## Comparació entre JSON propi i convertidor online
+- **Convertidor:** W3Schools XML to JSON, https://www.w3schools.com/tools/tool_xml_json.php
+- **Diferencia 1 (números como texto):** en todos los juegos, p. ej. RET-001 `"Precio": "35.99"` y `"Stock": "11"`; en el mío son números (`35.99`, `11`).
+- **Diferencia 2 (atributos con símbolo):** `"@id"` en todos los juegos y `"@comentario"` en RET-002; en el mío son `"id"` y `"comentario"`.
+- **Diferencia 3 (lista de un elemento):** RET-001 tiene `"Plataforma": "SNES"` sin lista (también RET-003 con `"Genero"`); en el mío siempre `["SNES"]`.
 
-Hem comparat el nostre fitxer [Lenguaje_Marca/Xslt/Catalogo_json.json](Lenguaje_Marca/Xslt/Catalogo_json.json) amb el fitxer generat per un convertidor online [Lenguaje_Marca/Xslt/cataleg_convertidor.json](Lenguaje_Marca/Xslt/cataleg_convertidor.json).
+- **Vuelta a XML:** `id` y `comentario` pasan de atributos a elementos, no hay raíz nueva (queda `<tienda>` y ocho `<juegos>` sueltos), las listas se repiten sin contenedor y se pierden DOCTYPE, comentarios, CDATA y los ceros finales (`41.90` pasa a `41.9`).
+- **¿Valida con el DTD? No:** el DTD define `id` como atributo obligatorio de `Juego` (`ATTLIST Juego id ID #REQUIRED`) y aquí es un elemento hijo de `<juegos>`; además faltan `Catalogo` y la raíz `Tienda`.
 
-### 1. Números convertits en text
-
-Aquest error no apareix al nostre JSON ni al convertidor online en aquest cas, perquè `precio`, `valoracion` i `stock` estan com a nombres reals.
-
-Exemple del nostre JSON:
-```json
-"precio": 35.99,
-"valoracion": 9.1,
-"stock": 11
-```
-
-Exemple del convertidor online:
-```json
-"Precio": 35.99,
-"Valoracion": 9.1,
-"Stock": 11
-```
-
-Conclusió: aquí no es comet el problema, ja que els nombres es mantenen correctes.
-
-### 2. Atributs marcats amb símbols
-
-Aquest és un error típic dels convertidors automàtics.
-
-Exemples del convertidor online:
-```json
-"@_id": "RET-001",
-"@_comentario": "Obra maestra del metroidvania.",
-"@_Moneda": "&eur;",
-"@_Fecha_actualizacion": "2025-09-08",
-"@_estilo": "retro"
-```
-
-Aquests atributs tenen prefixos com `@_`, `@`, `_`, `-`, que no són valids segons les regles de conversió que hem establert.
-
-En canvi, al nostre JSON ho hem convertit com a camps normals:
-```json
-"id": "RET-001",
-"moneda": "euro",
-"fecha": "1995-03-11"
-```
-
-Joc on apareix: `RET-001` i `RET-002` mostren aquest problema al convertidor online, perquè tenen atributs com `@_id` i `@_comentario`.
-
-### 3. Llistes d'un sol element que no són llista
-
-Aquest és el segon error habitual en convertidors automàtics.
-
-Exemple del convertidor online:
-```json
-"Plataforma": "SNES"
-```
-
-En lloc de:
-```json
-"plataformas": ["SNES"]
-```
-
-I també passa amb `Genero`:
-```json
-"Genero": "Plataformas"
-```
-
-En lloc de:
-```json
-"generos": ["Plataformas"]
-```
-
-Jocs on apareix: `RET-003`, `RET-004`, `RET-005`, `RET-006`, `RET-008` tenen aquest problema en el convertidor online, perquè els elements repetits es guarden com a cadena simple quan només n'hi ha un.
-
-### Com ho tenim nosaltres
-
-Al nostre JSON, aquesta regla està corregida:
-
-```json
-"generos": ["RPG", "Aventura"]
-"plataformas": ["SNES"]
-```
-
-I quan no hi ha descripció, ho representem com a `null`:
-
-```json
-"descripcion": null
-```
-
-### Conclusió
-
-El convertidor online falla en dos dels tres errors típics:
-- atributs amb `@`, `_` o `-`
-- llistes d'un sol element mal representades
-
-El nostre JSON no comet cap d'aquests errors i manté els nombres com a nombres reals, que és la manera correcta segons les regles de conversió establertes.
-
-### Resum final
-
-- Convertidor online: comete errors en atributs i llistes d'un sol element.
-- JSON propi: correcte en aquests punts i segueix la normativa acordada.
-
+- **Errores de sintaxis (Parte D):** 6 errores de 4 tipos: 1 de comillas simples (`'codi'`), 1 clave sin comillas (`plataformes`), 1 comentario (`// preu sense IVA`) y 3 de comas (1 que faltaba tras `estoc` y 2 sobrantes).
+- **Error que el validador no detecta:** `"preu": "24.99"` era texto y debe ser número.

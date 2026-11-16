@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Tienda SYSTEM "RA4_Projecte_Fase_1_cataleg_deLeon_Jeuri.dtd">
+<!DOCTYPE Tienda SYSTEM "Catalogo_dtd.dtd">
 
 <!--
     Catálogo de SpawnCamp: tienda de videojuegos y consolas retro.
