@@ -18,6 +18,7 @@
       "stock": 11,
       "disponible": true,
       "fecha": "1995-03-11",
+      "imagen": "./Imagenes/img_caj1.jpg",
       "descripcion": "Legendario RPG sobre viajes en el tiempo con diseños de Akira Toriyama. Conserva la caja original y el manual en perfecto estado."
     },
     {
@@ -31,6 +32,7 @@
       "stock": 7,
       "disponible": true,
       "fecha": "1997-03-20",
+      "imagen": "./Imagenes/img_caj2.jpg",
       "descripcion": "La obra cumbre que definió un género entero dentro del castillo de Drácula. Edición Black Label completa en caja de metacrilato."
     },
     {
@@ -42,7 +44,8 @@
       "valoracion": 9.6,
       "stock": 8,
       "disponible": true,
-      "fecha": "1990-11-21"
+      "fecha": "1990-11-21",
+      "imagen": "./Imagenes/img_caj3.jpg"
     },
     {
       "id": "RET-004",
@@ -54,6 +57,7 @@
       "stock": 12,
       "disponible": true,
       "fecha": "1998-11-21",
+      "imagen": "./Imagenes/img_caj4.JPG",
       "descripcion": "La transición al 3D que cambió la industria de los videojuegos para siempre. Incluye pila de salvado recién cambiada."
     },
     {
@@ -66,6 +70,7 @@
       "stock": 5,
       "disponible": true,
       "fecha": "1993-07-11",
+      "imagen": "./Imagenes/img_caj5.png",
       "descripcion": "Velocidad endiablada y los doce luchadores originales reunidos en el cartucho rey de los salones recreativos."
     },
     {
@@ -77,7 +82,8 @@
       "valoracion": 9.3,
       "stock": 12,
       "disponible": true,
-      "fecha": "1999-01-31"
+      "fecha": "1999-01-31",
+      "imagen": "./Imagenes/img_caj6.webp"
     },
     {
       "id": "RET-007",
@@ -89,6 +95,7 @@
       "stock": 0,
       "disponible": false,
       "fecha": "1996-04-18",
+      "imagen": "./Imagenes/img_caj7.jpg",
       "descripcion": "Caos de disparos en 2D y animaciones pixel art hechas completamente a mano. Actualmente agotado, disponible bajo reserva."
     },
     {
@@ -101,6 +108,7 @@
       "stock": 6,
       "disponible": true,
       "fecha": "1996-02-27",
+      "imagen": "./Imagenes/img_caj8.jpg",
       "descripcion": "El fenómeno mundial donde empezó todo el viaje por la región de Kanto. Cartucho gris con pegatina original intacta."
     }
   ]
