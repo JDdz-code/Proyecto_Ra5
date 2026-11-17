@@ -1,26 +1,34 @@
-# RA5 · Projecte Fase 3 · SpawnCamp 
-- **Convertidor:** W3Schools XML to JSON, https://www.w3schools.com/tools/tool_xml_json.php
+# RA5 · Projecte Fase 3 · SpawnCamp
 
-- **Decisiones de la Parte B: Todos los casos en el juego RET-002**
+## 1. Part A — Conversió manual del JSON
 
-    - **Diferencia 1 (números como texto):** en todos los juegos, p. ej. RET-001 `"Precio": "35.99"` y `"Stock": "11"`; el convertidor los pasó como string y en el mío son números enteros (`35.99`, `11`).
+**Convertidor utilitzat:** W3Schools XML to JSON: https://www.w3schools.com/tools/tool_xml_json.php
 
-    - **Diferencia 2 (atributos con símbolo):** el convertidor puso todos los IDs de los juegos así: `"@id"`.
+<img width="600" height="351" alt="Captura de la Part A" src="https://github.com/user-attachments/assets/2462105b-cdd1-430b-bb02-856ecb640cfa" />
 
-    - **Diferencia 3 (lista de un elemento):** RET-001 tiene `"Plataforma": "SNES"` sin lista.
+## 2. Part B — Conversió automàtica
 
-    - **Número o texto:** `id` y `fecha` los he utilizado como string porque son textos, y para `precio`, `valoracion` y `stock` utilicé integers porque son números y se hacen cálculos con ellos.
+<img width="630" height="259" alt="Captura de la Part B" src="https://github.com/user-attachments/assets/9a77fce3-17cf-4c25-a3d4-7da1c685b280" />
 
-- **Retorno XML:** `id` y `comentario` pasan de atributos a elementos; no hay raíz nueva, queda `<tienda>` y ocho `<juegos>` sueltos; las listas se repiten sin contenedor y se pierden DOCTYPE, comentarios, CDATA y los ceros finales (`41.90` pasa a `41.9`).
+## 3. Decisions de la Part B — casos del joc RET-002
 
-- **¿Valida con el DTD? No:** el DTD define `id` como atributo obligatorio de `Juego` (`ATTLIST Juego id ID #REQUIRED`) y aquí es un elemento hijo de `<juegos>`; además faltan `Catalogo` y la raíz `Tienda`.
+- **Diferència 1 (números com a text):** en tots els jocs, per exemple `"Precio": "35.99"` i `"Stock": "11"`; el convertidor els va passar com a string i en el meu són nombres enters (`35.99`, `11`).
 
-- **Errores de sintaxis (Parte D):** 6 errores de 4 tipos: 1 de comillas simples (`'codi'`), 1 clave sin comillas (`plataformes`), 1 comentario (`// preu sense IVA`) y 3 de comas (1 que faltaba tras `estoc` y 2 sobrantes).
+- **Diferència 2 (atributs amb símbol):** el convertidor va posar tots els IDs dels jocs així: `"@id"`.
 
-- **Error que el validador no detecta:** `"preu": "24.99"` era texto y debe ser número.
+- **Diferència 3 (llista d'un sol element):** RET-001 té `"Plataforma": "SNES"` sense llista.
 
-## Parte E — Mostrar JSON en HTML
+- **Número o text:** `id` i `fecha` els he utilitzat com a string perquè són textos; i per a `precio`, `valoracion` i `stock` he utilitzat numbers perquè són valors numèrics i es fan càlculs amb ells.
 
-- La función que pinta cada tarjeta está en `Js/cataleg_json.js` y se llama `crearTarjeta(juego)`. Genera un `article` con el título, imagen, géneros, plataformas, precio, valoración y stock.
-- Si se carga `cataleg_convertidor.json`, `JSON.parse` sí funciona, pero la estructura no coincide con la esperada por la página; entonces `validarDatos()` falla y la web muestra un mensaje de “estructura no compatible” en lugar de dibujar tarjetas.
+- **Retorn XML:** `id` i `comentario` passen d'atributs a elements; no hi ha arrel nova, queda `<tienda>` i vuit `<juegos>` sols; les llistes es repeteixen sense contenidor i es perden DOCTYPE, comentaris, CDATA i els zeros finals (`41.90` passa a `41.9`).
 
+- **Valida amb el DTD? No:** el DTD defineix `id` com a atribut obligatori de `Juego` (`ATTLIST Juego id ID #REQUIRED`) i aquí és un element fill de `<juegos>`; a més faltan `Catalogo` i l'arrel `Tienda`.
+
+- **Errors de sintaxi (Part D):** 6 errors de 4 tipus: 1 de cometes simples (`'codi'`), 1 clau sense cometes (`plataformes`), 1 comentari (`// preu sense IVA`) i 3 comes (1 que faltava després de `estoc` i 2 sobrants).
+
+- **Error que el validador no detecta:** `"preu": "24.99"` era text i havia de ser número.
+
+## 4. Part E — Mostrar JSON en HTML
+
+- La funció que pinta cada targeta està a `Js/cataleg_json.js` i es diu `crearTarjeta(juego)`. Genera un `article` amb el títol, la imatge, els gèneres, les plataformes, el preu, la valoració i l'stock.
+- Si es carrega `cataleg_convertidor.json`, `JSON.parse` funciona, però l'estructura no coincideix amb la que espera la pàgina; llavors `validarDatos()` falla i la web mostra un missatge de “estructura no compatible” en lloc de dibuixar targetes.
